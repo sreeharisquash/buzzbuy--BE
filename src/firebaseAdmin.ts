@@ -2,12 +2,16 @@ import * as admin from "firebase-admin";
 import * as path from "path";
 import * as fs from "fs";
 
-// Ensure the path is correct relative to the dist directory after build
-const serviceAccountPath = path.join(
-  __dirname,
-  "../secrets/firebaseServiceAccountKey.json"
-);
-const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf8"));
+const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
+
+if (!serviceAccountPath) {
+  throw new Error(
+    "FIREBASE_SERVICE_ACCOUNT_PATH environment variable is not defined."
+  );
+}
+
+const resolvedPath = path.resolve(__dirname, serviceAccountPath);
+const serviceAccount = JSON.parse(fs.readFileSync(resolvedPath, "utf8"));
 
 // Initialize Firebase Admin SDK
 admin.initializeApp({
