@@ -3,10 +3,7 @@ import * as path from "path";
 import * as fs from "fs";
 
 // Ensure the path is correct relative to the dist directory after build
-const serviceAccountPath = path.join(
-  __dirname,
-  "../secrets/firebaseServiceAccountKey.json"
-);
+const serviceAccountPath = path.join(__dirname, "../secrets");
 const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf8"));
 
 // Initialize Firebase Admin SDK
