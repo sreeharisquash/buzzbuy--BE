@@ -2,13 +2,14 @@ import * as admin from "firebase-admin";
 import * as path from "path";
 import * as fs from "fs";
 
-const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
+const serviceAccountPath = "../secrets/firebaseServiceAccountKey.json";
 
 if (!serviceAccountPath) {
   throw new Error(
     "FIREBASE_SERVICE_ACCOUNT_PATH environment variable is not defined."
   );
 }
+console.log("service", serviceAccountPath);
 
 const resolvedPath = path.resolve(__dirname, serviceAccountPath);
 const serviceAccount = JSON.parse(fs.readFileSync(resolvedPath, "utf8"));

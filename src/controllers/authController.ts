@@ -152,8 +152,8 @@ export const getWomenCollectionProducts = async (
     // console.log("Found womens products:", womenProducts);
     res.status(200).json(womenProducts);
   } catch (error) {
-    console.error("Error fetching flash sale products:", error);
-    res.status(500).json({ message: "Failed to fetch flash sale products." });
+    console.error("Error fetching women's products:", error);
+    res.status(500).json({ message: "Failed to fetch women's products." });
   }
 };
 
