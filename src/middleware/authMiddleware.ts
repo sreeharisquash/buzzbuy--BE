@@ -17,6 +17,7 @@ const authenticateUser = async (
   next: NextFunction
 ) => {
   const token = req.headers.authorization?.split("Bearer ")[1];
+  console.log("Token:", token);
 
   if (!token) {
     return res.status(401).json({ message: "Unauthorized" });
@@ -27,7 +28,7 @@ const authenticateUser = async (
     req.user = decodedToken;
     next();
   } catch (error) {
-    res.status(401).json({ message: "Unauthorized" });
+    res.status(401).json({ message: "Unauthorized user found" });
   }
 };
 
