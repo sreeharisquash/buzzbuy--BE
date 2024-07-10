@@ -6,6 +6,7 @@ import productRoutes from "./routes/productRoutes";
 import cartRoutes from "./routes/cartRoutes";
 import wishlistRoutes from "./routes/wishlistRoutes";
 import db from "./config/db";
+import authenticateUser from "./middleware/authMiddleware";
 
 dotenv.config();
 
@@ -18,11 +19,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Routes
-app.use("/api", authRoutes);
-app.use("/api", productRoutes);
-app.use("/api", cartRoutes);
-app.use("/api", wishlistRoutes);
+// Public routes (authentication routes)
+app.use("/api/auth", authRoutes);
+
+// Protect all other routes with authentication middleware
+app.use(authenticateUser);
+
+//Protected routes
+app.use("/api/products", productRoutes);
+app.use("/api/cart", cartRoutes);
+app.use("/api/wishlist", wishlistRoutes);
 
 // Start server
 app.listen(port, host, () => {
