@@ -2,7 +2,7 @@ import * as admin from "firebase-admin";
 import * as path from "path";
 import * as fs from "fs";
 
-const serviceAccountPath = "../secrets/firebaseServiceAccountKey.json";
+const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
 
 if (!serviceAccountPath) {
   throw new Error(
