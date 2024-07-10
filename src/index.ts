@@ -22,12 +22,11 @@ app.use(express.urlencoded({ extended: true }));
 // Public routes (authentication routes)
 app.use("/api/auth", authRoutes);
 
-// Protect all other routes with authentication middleware
 app.use(authenticateUser);
 
 //Protected routes
 app.use("/api/products", productRoutes);
-app.use("/api/cart", cartRoutes);
+app.use("/api", cartRoutes);
 app.use("/api/wishlist", wishlistRoutes);
 
 // Start server

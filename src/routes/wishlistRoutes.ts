@@ -9,8 +9,8 @@ import {
 const router = Router();
 
 router.post("/removeFromWishlist", removeFromWishlist);
-router.post("/wishlist/toggle", toggleWishlist);
-router.get("/wishlist/:userId", getWishlist);
-router.get("/wishlist/check/:userId/:productId", checkIfWishlisted);
+router.post("/toggle", toggleWishlist);
+router.get("/:userId", getWishlist);
+router.get("/check/:userId/:productId", checkIfWishlisted);
 
 export default router;
